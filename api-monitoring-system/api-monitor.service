@@ -1,0 +1,15 @@
+[Unit]
+Description=API Monitoring System
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/path/to/api-monitoring-system
+EnvironmentFile=/path/to/api-monitoring-system/.env.production
+ExecStart=/path/to/venv/bin/gunicorn -c gunicorn_config.py wsgi:app
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
